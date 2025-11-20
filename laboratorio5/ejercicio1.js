@@ -20,7 +20,7 @@ console.log("1.3 Recorrido simple")
 for (let i = 0; i < inventario.length; i++) {
     console.log("Elemento "+i+": " + inventario[i][0]);
 }
-
+ 
 console.log("2. Ejercicios con Funciones (4 puntos)");
 console.log("2.1. Función para Cálculo de Inventario (2 puntos)");
 
@@ -86,3 +86,10 @@ console.log("Longitud del array original:", frutas.length);
 
 // Comprobamos que no se ha modificado
 console.log("¿El array ha cambiado? ->", frutas.length === 4 ? "No, sigue igual" : "Sí, se modificó");
+
+if(frutas.length === 4) {
+    console.log("El array ha cambiado");
+}
+else {
+    console.log("El array no ha cambiado");
+}
