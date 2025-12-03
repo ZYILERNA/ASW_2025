@@ -15,6 +15,9 @@ País.prototype.incrementarPoblacion = function(cantidad) {
 
 País.prototype.densidad = function() {
     return this.poblacion / this.area;
+    //otra manera de hacerlo
+    //let densidad = this.poblacion;
+    //return densidad /= this.area;
 }
 
 console.log("Apartado 3 – Operadores comparativos y ternario");
@@ -25,12 +28,12 @@ País.prototype.compararArea = function(otroPais) {
    : `${this.nombre} es más pequeño que el ${otroPais.nombre}`;
 }
 
-console.log("Apartado 4 – Trabajo con listas y bucles anidados");
+console.log("Apartado<croissants 4 – Trabajo con listas y bucles anidados");
 
 
 País.prototype.mostrarCiudades = function() {
     for (let i = 0; i < this.ciudades.length; i++) {
-        console.log(this.ciudades[i]);
+        console.log(this.ciudades[i]);                                                                                                                      
     }
 }
 
@@ -57,3 +60,4 @@ console.log("Ciudades de España:");
 pais1.mostrarCiudades();
 console.log("Letras de las ciudades de España:")
 pais1.mostrarCiudadesPorLetra();
+ 
