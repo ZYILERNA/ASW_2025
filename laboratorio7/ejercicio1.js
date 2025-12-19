@@ -1,129 +1,155 @@
 // ============ EJERCICIO 1 ============
-console.log("=== EJERCICIO 1 ===");
-console.log("Lo que vamos a imprimir: Cookies y conversión a array");
-console.log("");
+console.log("\n==============================");
+console.log("=== EJERCICIO 1: BASE VEHÍCULO ===");
+console.log("==============================\n");
 
-// Crear cookies
-document.cookie = "usuario=ana";
-document.cookie = "idioma=es";
-document.cookie = "tema=oscuro";
+class Vehiculo {
+    #velocidad = 0;
+    #estadoMotor = "apagado";
 
-console.log("Todas las cookies:");
-console.log(document.cookie);
-console.log("");
+    constructor(marca, modelo) {
+        this.marca = marca;
+        this.modelo = modelo;
+        console.log(`Nuevo Vehículo creado → ${marca} ${modelo}`);
+    }
 
-// Línea que convierte document.cookie en array
-console.log("Línea de código para convertir a array:");
-console.log("const arrayCookies = document.cookie.split('; ');");
-console.log("");
+    encenderMotor() {
+        console.log("\n--- Encendiendo Motor ---");
+        console.log("Estado PREVIO del motor:", this.#estadoMotor);
+        this.#estadoMotor = "encendido";
+        console.log("Estado POSTERIOR del motor:", this.#estadoMotor);
+        console.log("--------------------------\n");
+    }
 
-const arrayCookies = document.cookie.split('; ');
-
-console.log("RESULTADO - Array de cookies:");
-for (let cookie of arrayCookies) {
-    let [name, value] = cookie.split('=');
-    console.log(`${name} = ${value}`);
+    acelerar(incremento) {
+        console.log("\n--- Acelerando Vehículo ---");
+        console.log("Velocidad PREVIA:", this.#velocidad);
+        this.#velocidad += incremento;
+        console.log("Velocidad POSTERIOR:", this.#velocidad);
+        console.log("-----------------------------\n");
+    }
 }
-console.log("");
 
 
 // ============ EJERCICIO 2 ============
-// Esperar a que el DOM esté listo
-window.addEventListener('load', function() {
-    console.log("=== EJERCICIO 2 ===");
-    console.log("Lo que vamos a imprimir: Valores y propiedades de elementos del formulario");
-    console.log("");
-    
-    document.getElementById('formularioUsuario').addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        const nombre = document.getElementById('nombre');
-        const fechaNacimiento = document.getElementById('fechaNacimiento');
-        const pais = document.getElementById('pais');
-        
-        console.log("RESULTADO - Valores de los elementos:");
-        console.log("");
-        
-        console.log("Input Nombre:");
-        console.log("  value:", nombre.value);
-        console.log("  id:", nombre.id);
-        console.log("  type:", nombre.type);
-        console.log("");
-        
-        console.log("Input Fecha:");
-        console.log("  value:", fechaNacimiento.value);
-        console.log("  id:", fechaNacimiento.id);
-        console.log("  type:", fechaNacimiento.type);
-        console.log("");
-        
-        console.log("Select País:");
-        console.log("  value:", pais.value);
-        console.log("  id:", pais.id);
-        console.log("  selectedIndex:", pais.selectedIndex);
-        console.log("");
-    });
-});
+console.log("\n==============================");
+console.log("=== EJERCICIO 2: HERENCIA ===");
+console.log("==============================\n");
 
-
-// ============ EJERCICIO 3 ============
-window.addEventListener('load', function() {
-    console.log("=== EJERCICIO 3 ===");
-    console.log("Lo que vamos a imprimir: Creación y modificación de nodos DOM");
-    console.log("");
-    
-    // 1. Crear nuevo nodo de elemento de lista
-    const nuevoElemento = document.createElement('li');
-    
-    // 2. Asignar texto "Nuevo Mensaje"
-    nuevoElemento.textContent = 'Nuevo Mensaje';
-    
-    // 3. Modificar contenido HTML del párrafo
-    const parrafo = document.getElementById('mensaje');
-    if (parrafo) {
-        parrafo.innerHTML = nuevoElemento.outerHTML;
-        
-        console.log("RESULTADO:");
-        console.log("Elemento <li> creado con texto: 'Nuevo Mensaje'");
-        console.log("Contenido del párrafo ahora es:", parrafo.innerHTML);
-        console.log("");
+class Coche extends Vehiculo {
+    constructor(marca, modelo, numPuertas) {
+        super(marca, modelo);
+        this.numPuertas = numPuertas;
+        console.log(`Coche creado con ${numPuertas} puertas.`);
     }
-});
+
+    // ============ EJERCICIO 3 ============
+    acelerar(incremento) {
+        console.log("\n>>> Acelerando COCHE");
+        super.acelerar(incremento);
+        console.log("Este coche usa energía del motor para acelerar.");
+        console.log("<<< Fin aceleración COCHE\n");
+    }
+
+    mostrarInformacion() {
+        console.log("\n[INFO COCHE]");
+        console.log("Marca:", this.marca);
+        console.log("Modelo:", this.modelo);
+        console.log("Número de puertas:", this.numPuertas);
+        console.log("-------------------------\n");
+    }
+}
+
+class Bicicleta extends Vehiculo {
+    constructor(marca, modelo) {
+        super(marca, modelo);
+        console.log("Bicicleta creada.");
+    }
+
+    encenderMotor() {
+        console.log("\n--- Intentando encender motor en Bicicleta ---");
+        console.log("No hay motor en una bicicleta.");
+        console.log("----------------------------------------------\n");
+    }
+
+    acelerar(incremento) {
+        console.log("\n>>> Acelerando BICICLETA");
+        super.acelerar(incremento);
+        console.log("Acelera gracias a la fuerza humana.");
+        console.log("<<< Fin aceleración BICICLETA\n");
+    }
+
+    mostrarInformacion() {
+        console.log("\n[INFO BICICLETA]");
+        console.log("Marca:", this.marca);
+        console.log("Modelo:", this.modelo);
+        console.log("-----------------------------\n");
+    }
+}
 
 
 // ============ EJERCICIO 4 ============
-window.addEventListener('load', function() {
-    console.log("=== EJERCICIO 4 ===");
-    console.log("Lo que vamos a imprimir: Estado del radio button y color de fondo");
-    console.log("");
+console.log("\n======================================");
+console.log("=== EJERCICIO 4: FUNCIÓN POLIMÓRFICA ===");
+console.log("======================================\n");
+
+function inspeccionarVehiculo(vehiculo) {
+    console.log("\n🔍 >>> INICIANDO INSPECCIÓN");
+    console.log("─────────────────────────────");
     
-    const radioButton = document.getElementById('acepto_condiciones');
-    
-    if (radioButton) {
-        // Cargar estado guardado
-        const estadoGuardado = localStorage.getItem('acepto_condiciones');
-        
-        if (estadoGuardado === 'true') {
-            radioButton.checked = true;
-            document.body.style.backgroundColor = 'lightgreen';
-            console.log("RESULTADO: Condiciones ACEPTADAS - Fondo VERDE");
-        } else {
-            radioButton.checked = false;
-            document.body.style.backgroundColor = 'lightcoral';
-            console.log("RESULTADO: Condiciones NO ACEPTADAS - Fondo ROJO");
-        }
-        
-        // Detectar cambios
-        radioButton.addEventListener('change', function() {
-            if (this.checked) {
-                document.body.style.backgroundColor = 'lightgreen';
-                localStorage.setItem('acepto_condiciones', 'true');
-                console.log("RESULTADO: Usuario ACEPTÓ - Fondo VERDE");
-            } else {
-                document.body.style.backgroundColor = 'lightcoral';
-                localStorage.setItem('acepto_condiciones', 'false');
-                console.log("RESULTADO: Usuario NO ACEPTÓ - Fondo ROJO");
-            }
-            console.log("Estado guardado en localStorage");
-        });
+    if (!vehiculo || typeof vehiculo.mostrarInformacion !== "function") {
+        console.log("❌ ERROR: Este objeto NO tiene método mostrarInformacion()");
+        console.log("─────────────────────────────");
+        console.log("<<< FIN INSPECCIÓN\n");
+        return;
     }
-});
+    
+    vehiculo.mostrarInformacion();
+    console.log("✓ Inspección completada");
+    console.log("<<< FIN INSPECCIÓN\n");
+}
+
+
+// ============================================
+// ==== PRUEBAS DEL LABORATORIO ====
+// ============================================
+console.log("║   INICIANDO PRUEBAS DEL LABORATORIO   ║");
+
+// Crear instancias
+console.log("📋 Paso 1: Creando vehículos...\n");
+const bici1 = new Bicicleta("Trek", "Marlin 7", "montaña");
+const coche1 = new Coche("Toyota", "Corolla", 4);
+
+// Probar encendido de motor
+console.log("\n📋 Paso 2: Probando encendido de motor...");
+coche1.encenderMotor();
+bici1.encenderMotor();
+
+// Probar aceleración
+console.log("\n📋 Paso 3: Probando aceleración...");
+bici1.acelerar(15);  // Las bicis no necesitan motor
+coche1.acelerar(30);
+
+// Inspeccionar vehículos (polimorfismo)
+console.log("\n📋 Paso 4: Inspeccionando vehículos...");
+inspeccionarVehiculo(bici1);
+inspeccionarVehiculo(coche1);
+
+// Objeto compatible (duck typing)
+console.log("\n📋 Paso 5: Probando con objeto no heredado...");
+const objetoMisterioso = {
+    tipo: "Patinete Eléctrico",
+    mostrarInformacion() {
+        console.log("OBJETO MISTERIOSO");
+        console.log(`Tipo:    ${this.tipo}`);
+        console.log("Mensaje: ¡Soy compatible con la interfaz!");
+        console.log("─────────────────────────────\n");
+    }
+};
+
+inspeccionarVehiculo(objetoMisterioso);
+
+// Objeto NO compatible
+console.log("\n📋 Paso 6: Probando con objeto incompatible...");
+const objetoInvalido = { nombre: "No tengo mostrarInformacion" };
+inspeccionarVehiculo(objetoInvalido);

@@ -1,97 +1,95 @@
-// 1️⃣ Definición y Acceso
-console.log("\n--- 1️⃣ Definición y Acceso ---");
-let datosUsuario = ["Pepe", 8, true];
-console.log("Array completo:", datosUsuario);
-console.log("Segundo elemento (índice 1):", datosUsuario[1]);
-console.log("Número de elementos:", datosUsuario.length);
+console.log("1. Ejercicios con Matrices (Array de Arrays)");
 
-// 2️⃣ Manipulación básica
-console.log("\n--- 2️⃣ Manipulación del array ---");
+console.log("1.1creación de una matriz")
+let inventario = [
+    ["Manzanas", 50, 2],
+    ["Platanos", 100, 4],
+    ["Naranjas", 200, 1],
+];
 
-// Añadir al final
-let longitudPush = datosUsuario.push("hola", "adios", "años");
-console.log("Después de push('hola', 'adios', 'años'):", datosUsuario);
-console.log("Nueva longitud devuelta por push():", longitudPush);
+console.log("1.2. Acceso y Modificación Matricial")
+console.log(inventario[1][2]); // precio de "Platanos"
 
-// Eliminar último elemento
-let elementoPop = datosUsuario.pop();
-console.log("Elemento eliminado con pop():", elementoPop);
-console.log("Array ahora:", datosUsuario);
+const totalfilas = inventario.length;
+const primerafilaelement = inventario[0].length;
 
-// Eliminar elemento específico ("años")
-let index = datosUsuario.indexOf("años");
-if (index !== -1) {
-    let arrayEliminado = datosUsuario.splice(index, 1);
-    console.log("Elemento eliminado con splice():", arrayEliminado[0]);
+console.log("Número total de filas:", totalfilas);
+console.log("Número de elementos en la primera fila:", primerafilaelement);
+
+console.log("1.3 Recorrido simple")
+for (let i = 0; i < inventario.length; i++) {
+    console.log("Elemento "+i+": " + inventario[i][0]);
 }
-console.log("Array ahora:", datosUsuario);
+ 
+console.log("2. Ejercicios con Funciones (4 puntos)");
+console.log("2.1. Función para Cálculo de Inventario (2 puntos)");
 
-// Añadir al principio
-let longitudUnshift = datosUsuario.unshift("primero");
-console.log("Después de unshift('primero'):", datosUsuario);
-console.log("Nueva longitud devuelta por unshift():", longitudUnshift);
+function calcularValorTotal(matriz) {
+let sumatotal = 0;
+for (let i = 0; i < matriz.length; i++) {
+    let calculo = (matriz[i][1]*matriz[i][2]);
+    sumatotal += calculo;
+}
+console.log(sumatotal);
+};
 
-// Eliminar del principio
-let elementoShift = datosUsuario.shift();
-console.log("Elemento eliminado con shift():", elementoShift);
-console.log("Array final tras shift():", datosUsuario);
+calcularValorTotal(inventario);
 
-// Mostrar todos los elementos uno por uno
-console.log("\nRecorriendo datosUsuario:");
-for (let i = 0; i < datosUsuario.length; i++) {
-    console.log(`Elemento ${i}:`, datosUsuario[i]);
+console.log("2.2. Uso de Funciones Anónimas:");
+
+console.log("2.2. Uso de Funciones Anónimas:");
+
+// Definimos la variable con una función anónima para ordenar por el precio (columna 2)
+/*a y b son dos filas (subarrays) del inventario.
+
+a[2] y b[2] acceden al precio de cada producto.
+
+La función a[2] - b[2] devuelve un número negativo, cero o positivo, y sort() usa ese resultado para ordenarlos.
+*/
+
+let ordenarPorPrecio = function(a, b) {
+    return [2] - b[2];
+};
+
+inventario.sort(ordenarPorPrecio);
+
+console.log("Inventario ordenado por precio (ascendente):");
+for (let i = 0; i < inventario.length; i++) {
+    console.log(inventario[i][0] + " - Precio: " + inventario[i][2]);
 }
 
-// 3️⃣ Concatenación
-console.log("\n--- 3️⃣ Concatenación ---");
-let arrayExtra = ["nuevo1", "nuevo2", "nuevo3"];
-let arrayTotal = datosUsuario.concat(arrayExtra);
-console.log("Array original:", datosUsuario);
-console.log("Array extra:", arrayExtra);
-console.log("Array total (concatenado):", arrayTotal);
+console.log("3. Ejercicios con Prototype");
 
-// 4️⃣ Ordenación de números
-console.log("\n--- 4️⃣ Ordenación de números ---");
-let numeros = [10, 2, 30, 25, 1];
-console.log("Array original:", numeros);
+console.log("3.1. Adición de un Método al Prototype");
 
-// Orden simple
-console.log("Array con sort() sin función:", numeros.sort());
+// Añadimos un nuevo método al prototipo de Array
+Array.prototype.obtenerUltimoElemento = function() {
+    // 'this' hace referencia al array que invoca el método
+    return this[this.length - 1];
+};
 
-// Orden ascendente
-numeros.sort((a, b) => a - b);
-console.log("Orden ascendente:", numeros);
+// Explicación por consola
+console.log("El método obtenerUltimoElemento usa 'this' para acceder al array que lo llama.");
+console.log("Por ejemplo, si lo llamamos con miArray.obtenerUltimoElemento(), 'this' será miArray.");
 
-// Orden descendente
-numeros.sort((a, b) => b - a);
-console.log("Orden descendente:", numeros);
+console.log("3.2. Verificación del Nuevo Método");
 
-// 5️⃣ Modificación de contenido
-console.log("\n--- 5️⃣ Modificación con splice() ---");
-console.log("Array total antes:", arrayTotal);
-arrayTotal.splice(2, 2, "insertado1", "insertado2");
-console.log("Array total después de splice():", arrayTotal);
+// Creamos un array de prueba
+let frutas = ["Manzana", "Pera", "Plátano", "Naranja"];
 
-// 6️⃣ Conversión de tipos
-console.log("\n--- 6️⃣ Conversión de tipos ---");
-let miCadena = "123.45";
-let otraCadena = "Hola Mundo";
+// Invocamos el nuevo método
+let ultimo = frutas.obtenerUltimoElemento();
 
-console.log("miCadena:", miCadena);
-console.log("otraCadena:", otraCadena);
+console.log("Último elemento del array:", ultimo);
+console.log("Array original:", frutas);
+console.log("Longitud del array original:", frutas.length);
 
-// isNaN
-console.log("\nComprobando isNaN():");
-console.log(`isNaN(miCadena):`, isNaN(miCadena));
-console.log(`isNaN(otraCadena):`, isNaN(otraCadena));
+// Comprobamos que no se ha modificado
+console.log("¿El array ha cambiado? ->", frutas.length === 4 ? "No, sigue igual" : "Sí, se modificó");
 
-// parseInt y parseFloat
-console.log("\nUsando parseInt() y parseFloat():");
-console.log(`parseInt("${miCadena}") =>`, parseInt(miCadena));
-console.log(`parseFloat("${miCadena}") =>`, parseFloat(miCadena));
-
-// String y Number
-let numero = 789;
-console.log("\nConversión de tipos:");
-console.log(`String(${numero}) =>`, String(numero), "Tipo:", typeof String(numero));
-console.log(`Number("${miCadena}") =>`, Number(miCadena), "Tipo:", typeof Number(miCadena));
+if(frutas.length === 4) {
+    console.log("El array ha cambiado");
+}
+else {
+    console.log("El array no ha cambiado");
+}
