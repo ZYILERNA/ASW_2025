@@ -1,0 +1,124 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f4f8;
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+    min-height: 100vh;
+}
+
+.container {
+    width: 100%;
+    max-width: 600px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 24px;
+    color: #2c3e50;
+    font-size: 1.8rem;
+}
+
+fieldset {
+    background-color: azure;
+    border: 1px solid #b0c4d8;
+    border-radius: 8px;
+    padding: 24px 28px;
+    margin-bottom: 24px;
+}
+
+legend {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #2c3e50;
+    padding: 0 8px;
+}
+
+label {
+    display: block;
+    margin-top: 16px;
+    margin-bottom: 6px;
+    font-weight: bold;
+    color: #34495e;
+    font-size: 0.95rem;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select,
+textarea {
+    display: block;
+    width: 60%;
+    padding: 10px 12px;
+    border: 1px solid #aabdd1;
+    border-radius: 5px;
+    font-size: 0.95rem;
+    background-color: #ffffff;
+    transition: border-color 0.2s;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.15);
+}
+
+/* :valid — borde verde cuando el campo cumple las reglas HTML5 */
+input[type="text"]:valid,
+input[type="email"]:valid,
+input[type="password"]:valid {
+    border-color: #27ae60;
+}
+
+/* :invalid — borde rojo, pero solo tras interactuar (not :placeholder-shown evita el rojo en campos vacíos sin tocar) */
+input[type="text"]:not(:placeholder-shown):invalid,
+input[type="email"]:not(:placeholder-shown):invalid,
+input[type="password"]:not(:placeholder-shown):invalid {
+    border-color: #e74c3c;
+}
+
+textarea {
+    resize: vertical;
+}
+
+#contador {
+    display: block;
+    margin-top: 4px;
+    font-size: 0.82rem;
+    color: #7f8c8d;
+    transition: color 0.2s;
+}
+
+#contador.aviso {
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+button[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background-color: #2980b9;
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+button[type="submit"]:hover {
+    background-color: #1f618d;
+}
